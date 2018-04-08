@@ -395,6 +395,63 @@ class ElementIndex {
   \texttt{ElementId} indexes block, $x$, $y$, and $z$ in domain
 \end{frame}
 
+\begin{frame}[noframenumbering]
+  \frametitle{Design Steps}
+  \begin{enumerate}
+  \item Invoking entry methods
+  \item Creating chares
+  \item \textbf{Reductions}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile,fragile]
+  \frametitle{Reductions}
+  \begin{itemize}
+  \item<1-> Reductions become quite straight forward:
+\begin{lstlisting}
+charmxx::contribute_to_reduction<
+      ProcessReducedProductOfDoublesEntryMethod>(
+  receiver_proxy, array_proxy,
+  charmxx::Reduction::product_double,
+  my_send_double);
+\end{lstlisting}
+  \item<2-> Reducing custom data also simpler
+  \item<2-> Supply generic data structure for custom reductions
+\begin{lstlisting}
+charmxx::ReductionData<int,
+                       double,
+                       std::vector<double>>;
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Custom Reductions}
+  Function to reduce custom data structure:
+\begin{lstlisting}
+charmxx::ReductionMsg* reduce_reduction_data(
+      const int number_of_messages,
+      charmxx::ReductionMsg** const msgs) noexcept {
+  /* custom reduction function*/
+}
+\end{lstlisting}
+
+  \pause
+  Inside an entry method:
+\begin{lstlisting}
+charmxx::contribute_to_reduction<
+      &reduce_reduction_data,
+      ProcessCustomReductionEntryMethod>(
+  receiver_proxy, array_proxy,
+  charmxx::ReductionData<int,
+                         std::unordered_map<std::string,
+                                            int>,
+                         std::vector<int>>{
+  10, my_send_map,
+  std::vector<int>{array_index, 10, -8}});
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}
   \frametitle{Summary}
   \begin{itemize}
