@@ -11,8 +11,11 @@
 \usepackage{beamerthemesplit}
 \setbeamertemplate{navigation symbols}{}
 
-\usepackage{graphicx}
+\usepackage{relsize}
+\newcommand\CC{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\relsize{-3}{\textbf{++}}}}
+\newcommand\Charm{Charm\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\relsize{-3}{\textbf{++}}}}
 
+\usepackage{graphicx}
 \usepackage{listings}
 \usepackage{textcomp}
 \usepackage{inconsolata} % Use better font for code
@@ -178,7 +181,7 @@ $\;\;\;\;$\includegraphics[height=.2\textheight]{CULogo-red120px.pdf}
   \item Restrictive
   \item Error-prone (undefined behavior $\implies$ difficult bugs)
   \item Maintenance burden (users and \texttt{Charm++} devs)
-  \item Can't handle modern C++ $\implies$ inefficient generated code
+  \item Can't handle modern \CC $\implies$ inefficient generated code
   \end{itemize}
   \vspace{1.0cm}
 
