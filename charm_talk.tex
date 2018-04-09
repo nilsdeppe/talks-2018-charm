@@ -142,8 +142,8 @@ $\;\;\;\;$\includegraphics[height=.2\textheight]{CULogo-red120px.pdf}
   \frametitle{SpECTRE Goals}
   Physics:
   \begin{itemize}
-  \item Multi-scale, multi-physics in astrophysics
-  \item Binary black holes, neutron stars
+  \item Multi-scale, multi-physics relativistic astrophysics
+  \item Binary black holes, binary neutron stars
   \item Core-collapse supernovae with micro-physics
   \item Multi-disciplinary
   \end{itemize}
@@ -157,7 +157,7 @@ $\;\;\;\;$\includegraphics[height=.2\textheight]{CULogo-red120px.pdf}
 \end{frame}
 
 \begin{frame}
-  \frametitle{SpECTRE:\@ Domain Decomposition and Local Time Stepping}
+  \frametitle{Domain Decomposition and Local Time Stepping}
   B.~Szilagyi, arXiv:~1405.3693
   \vspace{-0.4cm}
   \begin{center}
@@ -432,7 +432,8 @@ charmxx::contribute_to_reduction<
   \item<2-> Supply generic data structure for custom reductions
 \begin{lstlisting}
 charmxx::ReductionData<int,
-                       double,
+                       std::unordered_map<std::string,
+                                          int>,
                        std::vector<double>>;
 \end{lstlisting}
   \end{itemize}
