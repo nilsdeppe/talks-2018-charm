@@ -364,9 +364,11 @@ void update_coordinate(Vector& coord, const Vector& vel,
   \frametitle{Naming/Identifying Chares}
   \Charm~will supply class templates, need ``names''
 \begin{lstlisting}
-struct MyChareId {
+struct MyChareName {
   // Singleton, Array, Group, or Nodegroup
   using chare_type = charmxx::Array;
+  // For arrays must specify index:
+  using array_index = MyAwesomeArrayIndex;
   using tags =
     charmxx::TagList<ParticleCoordinate,
                      ParticleVelocity>;
@@ -381,9 +383,9 @@ struct MyChareId {
   Create using:
 \begin{lstlisting}
 auto my_proxy =
-      charmxx::create<MyChareId>(start_coord,
-                                 start_velocity);
-auto my_proxy2 = charmxx::create<MyChareId2>(
+      charmxx::MyChareName>(start_coord,
+                            start_velocity);
+auto my_proxy2 = charmxx::create<MyChareName2>(
       my_proxy, start_coord, start_velocity);
 \end{lstlisting}
   \begin{itemize}
